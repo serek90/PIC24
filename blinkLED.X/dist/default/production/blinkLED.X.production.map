@@ -17,6 +17,7 @@ Command:
   -Lc:/program files (x86)/microchip/xc16/v1.41/bin/bin/../../support/dsPIC33E/gld \
   -Lc:/program files (x86)/microchip/xc16/v1.41/bin/bin/../../support/dsPIC33F/gld \
   build/default/production/newmainXC16.o \
+  build/default/production/leds.o \
   --local-stack \
   --defsym=__MPLAB_BUILD=1 \
   -Tp24FJ128GA204.gld.00 \
@@ -64,9 +65,9 @@ Default Scalar Model: Small
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
 .text                        0x200               0x10a           0x18f  (399)
-.text                        0x30a                0x10            0x18  (24)
+.text                        0x30a               0x200           0x300  (768)
 
-                 Total "program" memory used (bytes):          0x1a7  (423) <1%
+                 Total "program" memory used (bytes):          0x48f  (1167) <1%
 
 
 "data" Memory  [Origin = 0x800, Length = 0x2000]
@@ -93,19 +94,29 @@ External Symbols in Program Memory (by address):
 
                   0x000200                  __resetPRI
                   0x00023c                  __psv_init
-                  0x000252                  __data_init
                   0x000252                  __data_init_da
+                  0x000252                  __data_init
                   0x000304                  __DefaultInterrupt
-                  0x00030a                  _main
+                  0x00030a                  _LED_On
+                  0x00034a                  _LED_Off
+                  0x00038a                  _LED_Toggle
+                  0x000438                  _LED_Get
+                  0x0004c2                  _LED_Enable
+                  0x000502                  _main
 
 External Symbols in Program Memory (by name):
 
+                  0x0004c2                  _LED_Enable
+                  0x000438                  _LED_Get
+                  0x00034a                  _LED_Off
+                  0x00030a                  _LED_On
+                  0x00038a                  _LED_Toggle
                   0x000304                  __DefaultInterrupt
                   0x000252                  __data_init
                   0x000252                  __data_init_da
                   0x00023c                  __psv_init
                   0x000200                  __resetPRI
-                  0x00030a                  _main
+                  0x000502                  _main
 
 Memory Configuration
 
@@ -125,6 +136,7 @@ CONFIG1          0x0157fe           0x000002
 Linker script and memory map
 
 LOAD build/default/production/newmainXC16.o
+LOAD build/default/production/leds.o
                     0x0001                  __MPLAB_BUILD = 0x1
 LOAD pPIC24Fxxx
 LOAD c:/program files (x86)/microchip/xc16/v1.41/bin/bin/../../lib\libfx-elf.a
@@ -186,26 +198,30 @@ __CONFIG1
 .comment
  *(.comment)
 
-.debug_info       0x000000        0x567
+.debug_info       0x000000        0x7bd
  *(.debug_info)
- .debug_info      0x000000        0x567 build/default/production/newmainXC16.o
+ .debug_info      0x000000        0x14f build/default/production/newmainXC16.o
+ .debug_info      0x00014f        0x66e build/default/production/leds.o
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev     0x000000         0x8c
+.debug_abbrev     0x000000        0x100
  *(.debug_abbrev)
- .debug_abbrev    0x000000         0x8c build/default/production/newmainXC16.o
+ .debug_abbrev    0x000000         0x36 build/default/production/newmainXC16.o
+ .debug_abbrev    0x000036         0xca build/default/production/leds.o
 
-.debug_line       0x000000         0xf3
+.debug_line       0x000000        0x18a
  *(.debug_line)
- .debug_line      0x000000         0xf3 build/default/production/newmainXC16.o
+ .debug_line      0x000000         0x3c build/default/production/newmainXC16.o
+ .debug_line      0x00003c        0x14e build/default/production/leds.o
 
-.debug_frame      0x000000         0x30
+.debug_frame      0x000000         0xd0
  *(.debug_frame)
  .debug_frame     0x000000         0x30 build/default/production/newmainXC16.o
+ .debug_frame     0x000030         0xa0 build/default/production/leds.o
 
 .debug_str        0x000000         0x26
  *(.debug_str)
- .debug_str       0x000000         0x26 build/default/production/newmainXC16.o
+ .debug_str       0x000000         0x26 build/default/production/leds.o
 
 .debug_loc
  *(.debug_loc)
@@ -214,18 +230,22 @@ __CONFIG1
  *(.debug_macinfo)
 
 .debug_pubnames
-                  0x000000         0x1b
+                  0x000000         0x6e
  *(.debug_pubnames)
  .debug_pubnames
                   0x000000         0x1b build/default/production/newmainXC16.o
+ .debug_pubnames
+                  0x00001b         0x53 build/default/production/leds.o
 
 .debug_ranges
  *(.debug_ranges)
 
-.debug_aranges    0x000000         0x18
+.debug_aranges    0x000000         0x30
  *(.debug_aranges)
  .debug_aranges
                   0x000000         0x18 build/default/production/newmainXC16.o
+ .debug_aranges
+                  0x000018         0x18 build/default/production/leds.o
                     0x0000                  WREG0 = 0x0
                     0x0000                  _WREG0 = 0x0
                     0x0002                  WREG1 = 0x2
@@ -1573,19 +1593,29 @@ OUTPUT(dist/default/production/blinkLED.X.production.elf elf32-pic30)
 LOAD default_isr
 
 .debug_pubtypes
-                  0x000018         0x97
+                  0x000030         0xb1
  .debug_pubtypes
-                  0x000018         0x97 build/default/production/newmainXC16.o
+                  0x000030         0x12 build/default/production/newmainXC16.o
+ .debug_pubtypes
+                  0x000042         0x9f build/default/production/leds.o
 
 __c30_signature
-                  0x0000af         0x12
+                  0x0000e1         0x18
  __c30_signature
-                  0x0000af          0x6 build/default/production/newmainXC16.o
+                  0x0000e1          0x6 build/default/production/newmainXC16.o
  __c30_signature
-                  0x0000b5          0x6 c:/program files (x86)/microchip/xc16/v1.41/bin/bin/../../lib\liblega-pic30-elf.a(crt0_extended24.o)
+                  0x0000e7          0x6 build/default/production/leds.o
  __c30_signature
-                  0x0000bb          0x6 c:/program files (x86)/microchip/xc16/v1.41/bin/bin/../../lib\liblega-pic30-elf.a(data_init_24.o)
+                  0x0000ed          0x6 c:/program files (x86)/microchip/xc16/v1.41/bin/bin/../../lib\liblega-pic30-elf.a(crt0_extended24.o)
+ __c30_signature
+                  0x0000f3          0x6 c:/program files (x86)/microchip/xc16/v1.41/bin/bin/../../lib\liblega-pic30-elf.a(data_init_24.o)
 
-.text             0x00030a         0x10
- .text            0x00030a         0x10 build/default/production/newmainXC16.o
-                  0x00030a                  _main
+.text             0x00030a        0x200
+ .text            0x00030a        0x1f8 build/default/production/leds.o
+                  0x00030a                  _LED_On
+                  0x00034a                  _LED_Off
+                  0x00038a                  _LED_Toggle
+                  0x000438                  _LED_Get
+                  0x0004c2                  _LED_Enable
+ .text            0x000502          0x8 build/default/production/newmainXC16.o
+                  0x000502                  _main

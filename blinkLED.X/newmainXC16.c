@@ -15,10 +15,5 @@
 
 int main(void) {
     
-TRISAbits.TRISA9 = OUTPUT;
-LATAbits.LATA9 = LED_ON;
-TRISCbits.TRISC6 = OUTPUT;
-LATCbits.LATC6 = LED_ON;
-
     return 0;
 }
