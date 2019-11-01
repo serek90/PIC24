@@ -3,6 +3,10 @@
  * Author: PC
  *
  * Created on October 30, 2019, 6:53 PM
+ * 
+ * 
+ * Miganie dioda LED co pewien okreslony czas
+ * 
  */
 
 #include <xc.h>
@@ -20,7 +24,6 @@ int main(void)
 {
     LED_Enable(LED_LD3_BLUE );
     LED_Enable(LED_LD3_RED);
-    
     TIMER1_Init();
 
     while(1)
