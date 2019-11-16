@@ -8,16 +8,10 @@
 #ifndef INTERRUPTS_H
 #define	INTERRUPTS_H
 
-#ifdef	__cplusplus
-extern "C" {
-#endif
 
+#define PERIOD 50000
 
-
-
-#ifdef	__cplusplus
-}
-#endif
-
+extern volatile uint8_t add;
+void Timer1InterruptEnable(void);
 #endif	/* INTERRUPTS_H */
 
