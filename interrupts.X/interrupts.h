@@ -8,11 +8,22 @@
 #ifndef INTERRUPTS_H
 #define	INTERRUPTS_H
 
+#ifdef	__cplusplus
+extern "C" {
+#endif
 
-#define PERIOD 50000
 
+<<<<<<< HEAD
 extern volatile uint8_t add;
 
 void Timer1InterruptEnable(void);
+=======
+
+
+#ifdef	__cplusplus
+}
+#endif
+
+>>>>>>> parent of 37c0751... add
 #endif	/* INTERRUPTS_H */
 

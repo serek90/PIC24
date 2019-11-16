@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 
 #include <p24fj128ga204.h>
 #include "interrupts.h"
@@ -24,3 +25,5 @@ void _ISR _T1Interrupt(void)
        
      _T1IF = 0; 
 }
+=======
+>>>>>>> parent of 37c0751... add

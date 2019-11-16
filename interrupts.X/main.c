@@ -6,6 +6,7 @@
  */
 
 
+<<<<<<< HEAD
 #include <xc.h>
 #include "interrupts.h"
 #include "leds.h"
@@ -24,8 +25,10 @@ int main(void) {
           LED_Off(LED_LD3_BLUE);
     }
     
+=======
+#include "xc.h"
+
+int main(void) {
+>>>>>>> parent of 37c0751... add
     return 0;
 }
-
-
-
