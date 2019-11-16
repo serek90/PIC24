@@ -19,7 +19,6 @@ void Timer1InterruptEnable(void)
 
 void _ISR _T1Interrupt(void)
 {
-   
     if(add++ >= 10)
     add = 0;
        

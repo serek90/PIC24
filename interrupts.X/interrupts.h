@@ -12,6 +12,7 @@
 #define PERIOD 50000
 
 extern volatile uint8_t add;
+
 void Timer1InterruptEnable(void);
 #endif	/* INTERRUPTS_H */
 
