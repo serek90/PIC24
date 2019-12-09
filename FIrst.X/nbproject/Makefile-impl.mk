@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=interrupts.X
+PROJECTNAME=FIrst.X
 
 # Active Configuration
 DEFAULTCONF=default
