@@ -1,33 +1,23 @@
+
 #include <xc.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <stddef.h>
+#include "adc.h"
+#include <stdint.h>
 #include <stdbool.h>
 
-//#include "adc.h"
-
-/***************************************************************
- *Inicjalizacja ADC
- */
-void intitADC( void )
+/*********************************************
+*Initialization ADC***************************
+ ********************************************/
+void initADC(void)
 {
-    //pins
-    ANSCbits.ANSC0 =0;   //RC0_POT
-
-    AD1CON1 = 0;
-    AD1CSSL = 0;
-    AD1CON2 = 0;
-    
+    AD1CON1bits.ADON = 1;
     
 
-    
 }
 
-/***************************************************************
- * Pobiera numer kana?u i zwraca otrzymany wynik konwersji
- */
-
-int readADC( int ch)
+/**********************************************
+ *function to read from ADC********************
+ *********************************************/
+int readADC(int ch)
 {
     
 }
